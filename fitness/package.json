@@ -5,8 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "ts-node": "ts-node",
-    "multiply": "ts-node multiplier.ts",
-    "calculate": "ts-node calculator.ts"
+    "bmiCalculator": "ts-node bmiCalculator.ts"
   },
   "author": "",
   "license": "ISC",
