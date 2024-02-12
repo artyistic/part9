@@ -31,7 +31,7 @@ const calculateBMI = (bmidata: bmiData) : String => {
   return "Obese (Class III)";
 }
 
-const getCliArgs = () : bmiData=> {
+const getBmiData = () : bmiData=> {
   const args = process.argv;
 
   if (args.length < 4) throw new Error('Not enough arguments');
@@ -47,4 +47,4 @@ const getCliArgs = () : bmiData=> {
   }
 }
 
-console.log(calculateBMI(getCliArgs()))
+console.log(calculateBMI(getBmiData()))
