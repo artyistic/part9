@@ -15,7 +15,7 @@ const bmiCategories: {[threshold: number] : string} = {
 
 
 // height in cm, weight in kgs
-const calculateBMI = (bmidata: bmiData) : String => {
+export const calculateBMI = (bmidata: bmiData) : String => {
 
   if (bmidata.height < 0 || bmidata.weight < 0) {
     return "please provide positive numbers for both height and weight";
@@ -31,7 +31,7 @@ const calculateBMI = (bmidata: bmiData) : String => {
   return "Obese (Class III)";
 }
 
-const getBmiData = () : bmiData=> {
+export const getBmiData = () : bmiData=> {
   const args = process.argv;
 
   if (args.length < 4) throw new Error('Not enough arguments');
@@ -47,4 +47,5 @@ const getBmiData = () : bmiData=> {
   }
 }
 
-console.log(calculateBMI(getBmiData()))
+// console.log(calculateBMI(getBmiData()))
+
