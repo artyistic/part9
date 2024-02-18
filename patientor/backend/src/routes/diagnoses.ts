@@ -1,5 +1,4 @@
 import express from 'express';
-// import { Diagnosis } from '../types';
 import diagnosesService from '../services/diagnosesService';
 
 const router = express.Router();
