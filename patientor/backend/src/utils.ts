@@ -44,7 +44,6 @@ const parseOccupation = (occupation: unknown): string => {
 }
 
 const toNewPatientEntry = (object: unknown): NewPatientEntry => {
-  console.log(object);
   if ( !object || typeof object !== 'object' ) {
     throw new Error('Incorrect or missing data');
   }
