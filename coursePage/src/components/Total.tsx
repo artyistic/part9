@@ -1,5 +1,5 @@
 interface TotalProps {
-  totalExercises: number
+  totalExercises: number;
 }
 
 export const Total = (props: TotalProps) => {

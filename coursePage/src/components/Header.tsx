@@ -1,5 +1,5 @@
 interface HeaderProps{
-  courseName: string
+  courseName: string;
 }
 
 export const Header = (props: HeaderProps) => {
