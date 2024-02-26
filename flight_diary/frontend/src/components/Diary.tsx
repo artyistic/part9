@@ -2,7 +2,7 @@ import { NonSensitiveDiaryEntry } from "../types";
 
 interface DiaryProps {
   diary: NonSensitiveDiaryEntry;
-};
+}
 
 export const Diary = (props: DiaryProps) => {
   const diary = props.diary;
