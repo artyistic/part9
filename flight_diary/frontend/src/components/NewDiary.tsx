@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addNewDiary } from "../services/diaryService";
 import { Visibility, Weather } from "../types";
+import { parseVisibility, parseWeather } from "../utils";
 import axios from "axios"
 
 
@@ -17,8 +18,8 @@ export const NewDiary = () => {
     event.preventDefault();
     addNewDiary({
       date: date,
-      visibility: visibility as Visibility,
-      weather: weather as Weather,
+      visibility: parseVisibility(visibility),
+      weather: parseWeather(weather),
       comment: comment
     }).then(data => {
       console.log("new Diary added");
@@ -36,10 +37,22 @@ export const NewDiary = () => {
       <h2>Add new entry</h2>
       {error && <div>{error}</div>}
       <form onSubmit={submitNewDiary}>
-        date: <input onChange={(event) => setDate(event.target.value)}></input><br/>
-        visibility: <input onChange={(event) => setVisibility(event.target.value)}></input><br/>
-        weather: <input onChange={(event) => setWeather(event.target.value)}></input><br/>
-        comment: <input onChange={(event) => setComment(event.target.value)}></input><br/>
+        date: <input type="date" onChange={(event) => setDate(event.target.value)}></input><br/>
+        visibility:
+        {Object.values(Visibility).map(v => {
+                    return <div key={v}>
+                    <input type="radio" id={v} name={v} value={v} onChange={(event) => setVisibility(event.target.value)}/>
+                    <label htmlFor={v}>{v}</label>
+                  </div>
+        })}
+        <br/>weather:
+        {Object.values(Weather).map(w => {
+                    return <div key={w}>
+                    <input type="radio" id={w} name={w} value={w} onChange={(event) => setWeather(event.target.value)}/>
+                    <label htmlFor={w}>{w}</label>
+                  </div>
+        })}
+        <br/>comment: <input onChange={(event) => setComment(event.target.value)}></input><br/>
         <button type="submit">submit</button>
       </form>
     </>
