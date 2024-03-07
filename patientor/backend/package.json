@@ -12,6 +12,7 @@
   "author": "dhleung",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
