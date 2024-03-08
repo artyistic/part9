@@ -1,9 +1,11 @@
 import { Box } from "@mui/material";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import patientService from "../services/patients";
-import { Patient } from "../types";
-import { EntryInfo } from "./EntryInfo";
+import { Entry, Patient } from "../types";
+import { HospitalEntryInfo } from "./patientEntry/HospitalEntryInfo"
+import { OccupationalHealthcareEntryInfo } from "./patientEntry/OccupationalHealthcareEntryInfo";
+import { HealthCheckEntryInfo } from "./patientEntry/HealthCheckEntryInfo";
 
 type PatientId = {
   id: string;
@@ -24,6 +26,25 @@ export const PatientFullInfo = () => {
     void fetchPatientById();
   }, [id]);
 
+  const assertNever = (value: never): never => {
+    throw new Error (
+      `Unhandled discriminated union member: ${JSON.stringify(value)}`
+    );
+  }; 
+
+  const EntryDetails: React.FC<{entry: Entry}> = ({entry}) => {
+    switch(entry.type) {
+      case "Hospital":
+        return <HospitalEntryInfo entry={entry}></HospitalEntryInfo>
+      case "OccupationalHealthcare":
+        return <OccupationalHealthcareEntryInfo entry={entry}></OccupationalHealthcareEntryInfo>
+      case "HealthCheck":
+        return <HealthCheckEntryInfo entry={entry}></HealthCheckEntryInfo>
+      default:
+        return assertNever(entry);
+    }
+  }
+
   return (
     <>
       {patient ? (
@@ -38,8 +59,8 @@ export const PatientFullInfo = () => {
           </p>
           <h3>entries</h3>
           {patient.entries.length !== 0 ? (
-            patient.entries.map((e) => {
-              return <EntryInfo key={e.id} entry={e} />;
+            patient.entries.map((entry) => {
+              return EntryDetails({entry});
             })
           ) : (
             <p>No entries</p>
