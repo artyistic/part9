@@ -26,7 +26,7 @@ const getPatientById = async (id: string) => {
   );
 
   return data;
-}
+};
 
 export default {
   getAll, create, getPatientById
