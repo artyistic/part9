@@ -80,7 +80,11 @@ export const toNewEntry = (object: unknown): EntryWithoutId => {
   if (!("type" in object)) {
     throw new Error("Missing type");
   }
-  let base = { diagnosisCodes: parseDiagnosisCodes(object) };
+  let base = {};
+
+  if ("diagnosisCodes" in object) {
+    base = { diagnosisCodes: parseDiagnosisCodes(object) };
+  }
 
   switch (object.type) {
     case "Hospital":
